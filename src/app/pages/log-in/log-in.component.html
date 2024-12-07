@@ -1,0 +1,14 @@
+<main>
+    <div id="centro">
+        <h1>Currency Converter</h1>
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+            <input type="text" id="username" placeholder="Usuario" name="Username" ngModel required>
+            <input type="password" id="password" placeholder="Contraseña" name="Password" ngModel required>
+            <button [disabled]="loginForm.invalid" class="boton-resaltado" type="submit">Log in</button>
+            @if(errorLogin) {
+                <p>Error en login</p>
+            }
+        </form>
+        <a [routerLink]="['/signUp']">Sign up</a>
+    </div>
+</main>

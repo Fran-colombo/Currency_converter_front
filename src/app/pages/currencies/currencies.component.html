@@ -1,0 +1,46 @@
+<div class="currencies-container">
+    <h2>Currencies Management</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Legend</th>
+          <th>Symbol</th>
+          <th>Convertion Index</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (currency of currencyService.currency; track $index) {
+          <tr>
+          <td>{{ currency.code }}</td>
+          <td>{{ currency.legend }}</td>
+          <td>{{ currency.symbol }}</td>
+          <td>{{ currency.convertionIndex }}</td>
+           <td>
+           <button (click)="updateCurrency(currency)">Update</button>
+            <button (click)="DeleteCurrency(currency.code)">Delete</button>  
+          </td> 
+          </tr>
+        }
+      </tbody>
+    </table>
+   </div> 
+   <button (click)="showForm = !showForm" class="btn btn-create">
+    {{ showForm ? '-' : '+' }}
+  </button>
+    @if(showForm){
+    <div id="create-user"></div>
+    <h3>Create New Currency</h3>
+     <form #registerCurrencyForm="ngForm" (ngSubmit)="createCurrency(registerCurrencyForm)">Add Currency 
+    <input type="text"  placeholder="Enter code" name = "Code" ngModel required />
+    <input type="text"  placeholder="Enter legend" name = "Legend" ngModel required />
+    <input type="text"  placeholder="Enter symbol" name = "Symbol" ngModel required />
+    <input type="number"  placeholder="Enter conversion index" name = "ConvertionIndex" ngModel required />
+    <button [disabled]="registerCurrencyForm.invalid" class="boton-resaltado" type="submit">Add the currency</button>
+  </form> 
+    @if(errorRegister) {
+        <p>We couldn´t create the currency</p>
+    }
+    } 
+  

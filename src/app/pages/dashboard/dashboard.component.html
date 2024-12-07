@@ -1,0 +1,17 @@
+<header>
+    <h1> Parking App </h1>
+    <nav>
+        <a [routerLink]="['/converter']" routerLinkActive="link-activo">Conversions</a>
+         @if(authService.user?.role === "Admin"){ 
+            <a [routerLink]="['/currencies']" routerLinkActive="link-activo">Currencies</a>
+            <a [routerLink]="['/user-manage']" routerLinkActive="link-activo">User manage</a>
+         }
+        <div class="usuario">
+            <h4>Hi {{ user.username }}!</h4>
+            <button (click)="cerrarSesion()" class="logout-button">
+                <img src="/assets/img/icons/logout.png" alt="Cerrar sesión" class="userlogo"> 
+            </button>
+        </div>
+    </nav>
+</header>
+<router-outlet />

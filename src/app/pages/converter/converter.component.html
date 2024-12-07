@@ -1,0 +1,80 @@
+<div class="user-data">
+  <!-- <h2>User data</h2> -->
+  <!-- <table>
+    <thead>
+      <tr>
+        <th>Convertion</th>
+        <th>Actions</th>
+      </tr>
+    </thead> -->
+    <tbody>
+    <tr>
+    <!-- <td>{{ userData?.username }}</td> -->
+    <!-- <td>{{ userData?.email }}</td>
+    <td>{{ userData?.subscription?.subscriptionType }}</td> -->
+    <td>You have done {{ userData?.conversions }} convertions by now!</td>
+    @if(convLeft != null){
+    <a> Hi! {{userData.username}}!! you have {{convLeft}} convertions left, if you want to do more, upgrade your subscription type!</a>
+  }
+          <!-- <td> <button (click)="onAction()">Action</button></td> -->
+        </tr>
+
+    </tbody>
+  <!-- </table> -->
+   <main>
+    <form
+      #ConverterForm="ngForm"
+      (ngSubmit)="ConverterFormData(ConverterForm)"
+      id="form-container"
+    >
+      <h1 id="title">Converter</h1>
+      <div id="input-container">
+        <div class="field-container">
+          <label for="Amount">Amount</label>
+          <input
+            type="text"
+            maxlength="20"
+            (input)="validateInput($event)"
+            placeholder="500"
+            name="Amount"
+            id="Amount"
+            required
+            ngModel
+          />
+        </div>
+        <div class="field-container">
+          <label for="Code1">From</label>
+          <select name="Code1" id="Code1" required ngModel>
+            @for (currency of currencyService.currency; track $index) {
+            <option value="{{ currency.code }}">
+              {{ CurrencyName(currency) }}
+            </option>
+            }
+          </select>
+        </div>
+        <div class="field-container">
+          <label for="Code2">To</label>
+          <select name="Code2" id="Code2" required ngModel>
+            @for (currency of currencyService.currency; track $index) {
+            <option value="{{ currency.code }}">
+              {{ CurrencyName(currency) }}
+            </option>
+            }
+          </select>
+        </div>
+      </div>
+      <button
+        [disabled]="ConverterForm.invalid"
+        type="submit"
+        class="important-button"
+      >
+        Convert
+      </button>
+    </form>
+    @if (resultConversion !== null) {
+    <div id="output-container">
+      <p>Result:</p>
+      <span> {{ resultConversion.toLocaleString("es-Ar") }}</span>
+    </div>
+    }
+  </main>

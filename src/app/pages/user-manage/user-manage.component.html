@@ -1,0 +1,100 @@
+<main class="container">
+    <h1>User Management</h1>
+  
+    <!-- Tabla de usuarios -->
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Subscription Type</th>
+          <th>Convertions</th>
+          <th>Max convertions</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Iteración de usuarios -->
+        @for (user of userService.user; track $index) {
+          <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.subscription.subscriptionType
+            }}</td>
+            <td>{{ user.conversions }}</td>
+            <td>{{ user.subscription.maxConversions }}</td>
+            <td>{{ user.role }}</td>
+             <td class="actions">
+              <button (click)="updateUser(user.username, user.subscription.subId)" class="btn btn-update">Update</button> 
+              <button (click)="DeleteUser(user.username)" class="btn btn-delete">Delete</button>
+            </td> 
+          </tr>
+        }
+      </tbody>
+    </table>
+  
+
+  <!-- Botón para mostrar el formulario de creación -->
+<button (click)="showCreateForm = !showCreateForm" class="btn btn-create">
+    {{ showCreateForm ? '-' : '+' }}
+  </button>
+  
+  @if (showCreateForm) {
+    <div id="create-user" class="form-container">
+      <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+        <h2>Create User</h2>
+        <input
+          type="text"
+          id="username"
+          placeholder="Usuario"
+          name="username"
+          ngModel
+          required
+        />
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          name="password"
+          ngModel
+          required
+        />
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Confirm Password"
+          name="confirmPassword"
+          ngModel
+          required
+        />
+        <input
+          type="email"
+          id="email"
+          placeholder="Email"
+          name="email"
+          ngModel
+          required
+        />
+        <input
+          type="select"
+          id="subscription"
+          placeholder="Subscription Type"
+          name="subscription"
+          ngModel
+          required
+        />
+        <button
+          [disabled]="registerForm.invalid"
+          class="btn btn-submit"
+          type="submit"
+        >
+          Sign Up
+        </button>
+        @if (errorRegister) {
+          <p>Error en el registro</p>
+        }
+      </form>
+    </div>
+  }
+  
