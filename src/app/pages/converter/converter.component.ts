@@ -19,16 +19,15 @@ import { IUserToShow } from '../../interfaces/iuser-to-show';
 })
 export class ConverterComponent {
 
-    code1: string | null = null;
-    code2: string | null = null;
-    amount: number = 0;
-    result: number | null = null;
-    conversionResult: number | null = null;
-    currencies: ICurrency[] = [];
-    router = inject(Router);
-    currency: ICurrencyToShow[]  = [];  
-    // constructor(private currencyService: CurrencyService) {}
-    currencyService = inject(CurrencyService)
+  code1: string | null = null;
+  code2: string | null = null;
+  amount: number = 0;
+  result: number | null = null;
+  conversionResult: number | null = null;
+  currencies: ICurrency[] = [];
+  router = inject(Router);
+  currency: ICurrencyToShow[]  = [];  
+  currencyService = inject(CurrencyService)
   
   usertoshow: IUserToShow[] = [];
   usercomp = inject(AuthServicesService)
@@ -53,16 +52,6 @@ export class ConverterComponent {
         if (user) {
           this.userData = user; 
           console.log('Datos del usuario:', this.userData);
-
-          // Calcular si al usuario le quedan 2 conversiones o menos
-          const remainingConversions = user.subscription.maxConversions - user.conversions;
-          if (remainingConversions <= 2) {
-            this.convLeft = remainingConversions; 
-
-            console.log(`You have ${this.convLeft} conversions left`);
-          } else {
-            this.convLeft = null; // No mostrar mensaje si tiene más de 2 conversiones
-          }
         }
       } catch (error) {
         console.error('Error al obtener los datos del usuario:', error);

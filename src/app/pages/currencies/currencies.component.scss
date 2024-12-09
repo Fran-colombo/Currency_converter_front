@@ -1,115 +1,192 @@
 /* Estilos generales */
+main {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: url("/assets/img/cryptocurrency2.jpg");
+  background-size: cover;    
+  color: #fff;
+  padding: 20px;
+  position: relative;
+}
+
+/* Fondo de la página */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #d3269f;
-    color: #333;
-  }
-  
-  .currencies-container {
-    width: 80%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #c90606;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .currencies-container h2, .currencies-container h3 {
-    text-align: center;
-    color: #333;
-  }
-  
-  .currencies-container h3 {
-    margin-top: 30px;
-  }
-  
-  /* Estilos para la tabla */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  table thead {
-    background-color: #007bff;
-    color: #ffffff;
-  }
-  
-  table th, table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  table tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  table th {
-    text-transform: uppercase;
-    font-weight: bold;
-  }
-  
-  /* Estilos para botones de acciones en la tabla */
-  table button {
-    padding: 5px 10px;
-    margin: 0 5px;
-    border: none;
-    border-radius: 4px;
-    color: #4a0404;
-    cursor: pointer;
-  }
-  
-  table button:first-child {
-    background-color: #28a745; /* Verde para actualizar */
-  }
-  
-  table button:last-child {
-    background-color: #dc3545; /* Rojo para eliminar */
-  }
-  
-  table button:hover {
-    opacity: 0.8;
-  }
-  
-  /* Estilos para el formulario de creación de moneda */
-  label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  input[type="text"],
-  input[type="number"],
-  input[type="CurrencyCode"],
-  input[type="CurrencyLegend"] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
+  font-family: Arial, sans-serif;
+  background-color: #121212; /* Oscuro para el fondo general */
+  color: #f1f1f1; /* Color de texto claro */
+}
+
+/* Contenedor de las monedas */
+.currencies-container {
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente para contraste */
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px); /* Efecto de difuminado en el fondo */
+}
+
+/* Títulos */
+.currencies-container h2,
+.currencies-container h3 {
+  text-align: center;
+  color: #63f7f0; /* Color brillante */
+  text-shadow: 0 0 10px rgba(99, 247, 240, 0.8);
+}
+
+.currencies-container h3 {
+  margin-top: 30px;
+  font-size: 1.2rem;
+  color: #c90606; /* Rojo para el subtítulo */
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+}
+
+table thead {
+  background-color: #007bff;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+table th, table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #222; /* Fila par más oscura */
+}
+
+table tbody tr:hover {
+  background-color: #444;
+  transform: scale(1.02); /* Efecto de aumento al pasar el cursor */
+  transition: 0.3s ease-in-out;
+}
+.btn-container {
+  display: flex;          
+  flex-direction: column; 
+  gap: 10px;              
+  justify-content: center;
+  align-items: center;
+}
+
+table button {
+  padding: 8px 12px;
+  margin: 0;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.9rem;
+  transition: all 0.3s ease-in-out;
+  width: 80%; /* Ajusta el ancho del botón */
+  text-align: center;
+}
+
+table button:first-child {
+  background-color: #28a745; 
+}
+
+table button:last-child {
+  background-color: #dc3545; 
+}
+
+table button:hover {
+  opacity: 0.8;
+  transform: scale(1.05); 
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #bbb;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: calc(100% - 20px);
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #121212;
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos de los botones de acción */
+button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-shadow: 0 0 5px #63f7f0;
+}
+
+button:hover {
+  background-color: #0062cc;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #63f7f0;
+}
+
+/* Botón de crear nuevo usuario */
+.btn {
+  width: 5%;
+  margin: 20px auto;
+  margin-top: 10px;
+  display: block;
+  padding: 10px;
+  background-color: #0f172a;
+  color: #63f7f0;
+  border: 2px solid #63f7f0;
+  border-radius: 5px;
+  font-size: 16px;
+  text-shadow: 0px 0px 8px #63f7f0;
+  box-shadow: 0 0 15px #63f7f0;
+  transition: all 0.3s ease-in-out;
+}
+.not-admin{
+
+    width: 5%;
+    margin: 20px auto;
     margin-top: 10px;
-  }
+    display: block;
+    padding: 10px;
+    background-color: #0f172a;
+    color: #63f7f0;
+    cursor: not-allowed;
+    border: 2px solid #63f7f0;
+    border-radius: 5px;
+    font-size: 16px;
+    text-shadow: 0px 0px 8px #63f7f0;
+    box-shadow: 0 0 15px #63f7f0;
+    transition: all 0.3s ease-in-out;
   
-  button:hover {
-    background-color: #0056b3;
-  }
-  
+}
+
+.btn:hover {
+  background-color: #63f7f0;
+  color: #0f172a;
+  box-shadow: 0 0 25px #63f7f0, 0 0 50px #63f7f0;
+}
+

@@ -40,8 +40,6 @@ export class UserService {
   
       const resText: IUserToShow[] = await res.json();
       this.user = resText;
-      // console.log('Usuarios obtenidos:', this.user);
-      // this.loadData();
       return this.user;
     } catch (error) {
       console.error('Error en getAllUsers:', error);
@@ -82,11 +80,11 @@ export class UserService {
       body: JSON.stringify(updateData.subId)
     });
     
-    if (res.status !== 200) {
-      console.error("Error updating user subscription");
-    } else {
+    if (res.status === 200) {
       console.log("User subscription updated successfully");
       this.loadData();
+    } else {
+      console.error("Error updating user subscription");
     }
     return res;
   }

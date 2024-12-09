@@ -39,7 +39,7 @@ export const routes: Routes = [
             {
                 path: "currencies",
                 component: CurrenciesComponent,
-                canActivate: [soloAdminGuard]
+                canActivate: [soloLogueadoGuard]
             }
         ]
     },

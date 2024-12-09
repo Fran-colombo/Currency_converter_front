@@ -22,9 +22,12 @@
             <td>{{ user.email }}</td>
             <td>{{ user.subscription.subscriptionType
             }}</td>
-            <td>{{ user.conversions }}</td>
+              <td [class.max-conversions]="user.conversions >= user.subscription.maxConversions">
+                {{ user.conversions }}
+              </td>
             <td>{{ user.subscription.maxConversions }}</td>
-            <td>{{ user.role }}</td>
+            <td [attr.data-role]="user.role">{{ user.role }}</td>
+
              <td class="actions">
               <button (click)="updateUser(user.username, user.subscription.subId)" class="btn btn-update">Update</button> 
               <button (click)="DeleteUser(user.username)" class="btn btn-delete">Delete</button>
@@ -34,9 +37,11 @@
       </tbody>
     </table>
   
-
-  <!-- Botón para mostrar el formulario de creación -->
-<button (click)="showCreateForm = !showCreateForm" class="btn btn-create">
+    <button (click)="openCreateUserModal()" class="btn btn-create">
+      +
+    </button>
+    
+<!-- <button (click)="showCreateForm = !showCreateForm" class="btn btn-create">
     {{ showCreateForm ? '-' : '+' }}
   </button>
   
@@ -96,5 +101,5 @@
         }
       </form>
     </div>
-  }
+  } -->
   

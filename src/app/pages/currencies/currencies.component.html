@@ -1,5 +1,11 @@
+<main>
 <div class="currencies-container">
+  @if(this.authService.user?.role === "Admin"){
     <h2>Currencies Management</h2>
+  }
+  @else {
+    <h2>Currencies</h2>
+  }
     <table>
       <thead>
         <tr>
@@ -18,29 +24,24 @@
           <td>{{ currency.symbol }}</td>
           <td>{{ currency.convertionIndex }}</td>
            <td>
-           <button (click)="updateCurrency(currency)">Update</button>
-            <button (click)="DeleteCurrency(currency.code)">Delete</button>  
+            <div class = "btn-container">
+            @if(authService.user?.role === "Admin"){
+           <button (click)="updateCurrency(currency)"  class = "btn">Update</button>
+            <button (click)="DeleteCurrency(currency.code)"  class = "btn">Delete</button>  
+            }
+            @else{
+              <button (click)="updateCurrency(currency)"  class = "not-admin">Update</button>
+              <button (click)="DeleteCurrency(currency.code)"  class = "not-admin">Delete</button>
+            }
+            </div>
           </td> 
           </tr>
         }
       </tbody>
     </table>
    </div> 
-   <button (click)="showForm = !showForm" class="btn btn-create">
-    {{ showForm ? '-' : '+' }}
+   @if(this.authService.user?.role === "Admin"){
+   <button (click)="openCreateCurrencyModal()" class="btn btn-create">
+    +
   </button>
-    @if(showForm){
-    <div id="create-user"></div>
-    <h3>Create New Currency</h3>
-     <form #registerCurrencyForm="ngForm" (ngSubmit)="createCurrency(registerCurrencyForm)">Add Currency 
-    <input type="text"  placeholder="Enter code" name = "Code" ngModel required />
-    <input type="text"  placeholder="Enter legend" name = "Legend" ngModel required />
-    <input type="text"  placeholder="Enter symbol" name = "Symbol" ngModel required />
-    <input type="number"  placeholder="Enter conversion index" name = "ConvertionIndex" ngModel required />
-    <button [disabled]="registerCurrencyForm.invalid" class="boton-resaltado" type="submit">Add the currency</button>
-  </form> 
-    @if(errorRegister) {
-        <p>We couldn´t create the currency</p>
-    }
-    } 
-  
+}

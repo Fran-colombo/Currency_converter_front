@@ -29,7 +29,48 @@ export class UserManageComponent {
 
     
   errorLogin = false
-  
+
+
+async openCreateUserModal() {
+  const { value: formValues } = await Swal.fire({
+    title: 'Create User',
+    html: `
+      <input id="swal-username" class="swal2-input" placeholder="Username">
+      <input type="password" id="swal-password" class="swal2-input" placeholder="Password">
+      <input type="password" id="swal-confirmPassword" class="swal2-input" placeholder="Confirm Password">
+      <input type="email" id="swal-email" class="swal2-input" placeholder="Email">
+      <select id="swal-subscription" class="swal2-select">
+        <option value="">Select Subscription</option>
+        <option value="Free">Free</option>
+        <option value="Trial">Trial</option>
+        <option value="Pro">Pro</option>
+      </select>
+    `,
+    focusConfirm: false,
+    showCancelButton: true,
+    preConfirm: () => {
+      const username = (document.getElementById('swal-username') as HTMLInputElement).value;
+      const password = (document.getElementById('swal-password') as HTMLInputElement).value;
+      const confirmPassword = (document.getElementById('swal-confirmPassword') as HTMLInputElement).value;
+      const email = (document.getElementById('swal-email') as HTMLInputElement).value;
+      const subscription = (document.getElementById('swal-subscription') as HTMLSelectElement).value;
+
+      if (!username || !password || !confirmPassword || !email || !subscription) {
+        Swal.showValidationMessage('All fields are required');
+        return null;
+      }
+
+      return { username, password, confirmPassword, email, subscription };
+    },
+  });
+
+  if (formValues) {
+    // Llama al método register con los valores del modal
+    const fakeForm: any = { value: formValues, invalid: false };
+    await this.register(fakeForm);
+  }
+}
+
   async register(registerForm: NgForm) {
 
     if (registerForm.invalid) {
@@ -49,8 +90,8 @@ export class UserManageComponent {
       console.log(password, confirmPassword)
       Swal.fire({
         icon: 'error',
-        title: 'Contraseñas no coinciden',
-        text: 'Por favor, asegúrate de que ambas contraseñas sean iguales.',
+        title: 'Passwords do not match',
+        text: 'Please, be sure that both passwords are equals.',
         timer: 3000,
       });
       return;
@@ -86,12 +127,10 @@ export class UserManageComponent {
         title: 'Registro exitoso',
         timer: 3000,
       });
-      registerForm.reset(); 
-      this.showCreateForm = false;
     } else {
       Swal.fire({
         icon: 'error',
-        title: 'Error en el registro',
+        title: 'Something went wrong signing up',
         timer: 3000,
       });
     }
@@ -154,8 +193,8 @@ DeleteUser(username: string) {
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Eliminar",
-    denyButtonText: "Cancelar",
+    confirmButtonText: "Delete",
+    denyButtonText: "Cancel",
     background: '#1a1a1a', 
     color: '#ffffff', 
     customClass: {
@@ -165,8 +204,8 @@ DeleteUser(username: string) {
     if (result.isConfirmed) {
       await this.userService.deleteUser(username);
       Swal.fire({
-      title: "¡Borrada!", 
-      text: "La cochera ha sido eliminada.", 
+      title: "Deleted!", 
+      text: "The user has been deleted.", 
       icon: "success",
       background: '#1a1a1a', 
       color: '#ffffff', 
