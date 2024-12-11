@@ -12,14 +12,13 @@ export class UserService {
  users: IUser [] = []
  user: IUserToShow[] = []
 
-  constructor() {
-    this.loadData()
-   }
+ userData: any = null; // Almacenamos los datos del usuario aquí
+
+ 
 
   
    async loadData() {
     await this.getAllUsers();
-    // await this.getUserByUsername();
   }
 
  
@@ -37,7 +36,7 @@ export class UserService {
         console.error('Error al obtener usuarios:', res.statusText);
         return;
       }
-  
+
       const resText: IUserToShow[] = await res.json();
       this.user = resText;
       return this.user;

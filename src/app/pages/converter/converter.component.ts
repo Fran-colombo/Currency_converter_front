@@ -9,6 +9,7 @@ import { ICurrencyToShow } from '../../interfaces/icurrency';
 import { AuthServicesService } from '../../services/auth-services.service';
 import { UserService } from '../../services/user.service';
 import { IUserToShow } from '../../interfaces/iuser-to-show';
+import { ConvertionsService } from '../../services/convertions.service';
 
 @Component({
   selector: 'app-converter',
@@ -28,7 +29,7 @@ export class ConverterComponent {
   router = inject(Router);
   currency: ICurrencyToShow[]  = [];  
   currencyService = inject(CurrencyService)
-  
+  convertion = inject(ConvertionsService)
   usertoshow: IUserToShow[] = [];
   usercomp = inject(AuthServicesService)
   userService = inject(UserService)
@@ -87,12 +88,13 @@ export class ConverterComponent {
     this.resultConversion = null;
 
 
-    const res = await this.currencyService.makeConvertion(converterData);
+    const res = await this.convertion.makeConvertion(converterData);
     const us = await this.userData.conversions + 1;
 
     if (res !== null) {
       this.resultConversion = res;
       this.userData.conversions = us;
+      this.userService.loadData();
       this.currencyService.loadData();
     } else {
       console.log("You don´t have more convertions")
@@ -100,7 +102,7 @@ export class ConverterComponent {
 
     this.showUpgradeMembershipAlert();
       
-    // }
+    
   }}
   showUpgradeMembershipAlert() {
     Swal.fire({

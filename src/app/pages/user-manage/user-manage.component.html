@@ -20,10 +20,9 @@
           <tr>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ user.subscription.subscriptionType
-            }}</td>
+            <td>{{ user.subscription.subscriptionType}}</td>
               <td [class.max-conversions]="user.conversions >= user.subscription.maxConversions">
-                {{ user.conversions }}
+              {{ user.conversions }} 
               </td>
             <td>{{ user.subscription.maxConversions }}</td>
             <td [attr.data-role]="user.role">{{ user.role }}</td>
@@ -41,65 +40,3 @@
       +
     </button>
     
-<!-- <button (click)="showCreateForm = !showCreateForm" class="btn btn-create">
-    {{ showCreateForm ? '-' : '+' }}
-  </button>
-  
-  @if (showCreateForm) {
-    <div id="create-user" class="form-container">
-      <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
-        <h2>Create User</h2>
-        <input
-          type="text"
-          id="username"
-          placeholder="Usuario"
-          name="username"
-          ngModel
-          required
-        />
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          name="password"
-          ngModel
-          required
-        />
-        <input
-          type="password"
-          id="confirmPassword"
-          placeholder="Confirm Password"
-          name="confirmPassword"
-          ngModel
-          required
-        />
-        <input
-          type="email"
-          id="email"
-          placeholder="Email"
-          name="email"
-          ngModel
-          required
-        />
-        <input
-          type="select"
-          id="subscription"
-          placeholder="Subscription Type"
-          name="subscription"
-          ngModel
-          required
-        />
-        <button
-          [disabled]="registerForm.invalid"
-          class="btn btn-submit"
-          type="submit"
-        >
-          Sign Up
-        </button>
-        @if (errorRegister) {
-          <p>Error en el registro</p>
-        }
-      </form>
-    </div>
-  } -->
-  

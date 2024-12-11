@@ -135,36 +135,36 @@ export class CurrencyService {
     //   console.error("Error making conversion");
     //   return null;
     // }
-    // return await res.json();
-  async makeConvertion(formData: IConvertion) {
-    try {
-      const response = await fetch(
-        `${environment.API_URL}Currency/conv`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            authorization: 'Bearer ' + localStorage.getItem('authToken'),
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+//     // return await res.json();
+//   async makeConvertion(formData: IConvertion) {
+//     try {
+//       const response = await fetch(
+//         `${environment.API_URL}Currency/conv`,
+//         {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//             authorization: 'Bearer ' + localStorage.getItem('authToken'),
+//           },
+//           body: JSON.stringify(formData),
+//         }
+//       );
 
-      if (response.status === 200) {
-        const resJson = await response.json();
-        this.loadData();
-        return resJson;
-      } else if (response.status === 204) {
-        console.log("You reached the top of convertions you can do, if you want to do more upgrade you sub type");
-        return null;
-      } else {
-        console.error('Conversion fallida');
-        return false;
-      }
-    } catch (error) {
-      console.error('Error en el proceso de conversión:', error);
-      return false;
-    }
-}
+//       if (response.status === 200) {
+//         const resJson = await response.json();
+//         this.loadData();
+//         return resJson;
+//       } else if (response.status === 204) {
+//         console.log("You reached the top of convertions you can do, if you want to do more upgrade you sub type");
+//         return null;
+//       } else {
+//         console.error('Conversion fallida');
+//         return false;
+//       }
+//     } catch (error) {
+//       console.error('Error en el proceso de conversión:', error);
+//       return false;
+//     }
+// }
 
 }

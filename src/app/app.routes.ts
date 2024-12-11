@@ -9,6 +9,7 @@ import { UserManageComponent } from './pages/user-manage/user-manage';
 import { soloPublicoGuard } from './guards/solo-publico-guard';
 import { CurrenciesComponent } from './pages/currencies/currencies.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ConvertionsComponent } from './pages/convertions/convertions.component';
 
 export const routes: Routes = [
     {
@@ -36,6 +37,11 @@ export const routes: Routes = [
                 path: "user-manage",
                 component: UserManageComponent,
                 canActivate: [soloAdminGuard]
+            },
+            {
+                path : "convertions",
+                component: ConvertionsComponent,
+                canActivate: [soloLogueadoGuard]
             },
             {
                 path: "currencies",

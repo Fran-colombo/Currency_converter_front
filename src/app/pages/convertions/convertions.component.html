@@ -1,0 +1,80 @@
+
+    <main class="container">
+        <h1>Conversion History</h1>
+      
+        <div class="card">
+          @if (authService.user?.role != "Admin") {
+            @if (convertionService.convertions.length > 0) {
+              <table class="user-table">
+                <thead>
+                  <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Amount</th>
+                    <th>Result</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (convertion of convertionService.convertions; track $index) {
+                    <tr>
+                      <td>{{ convertion.code1 }}</td>
+                      <td>{{ convertion.code2 }}</td>
+                      <td>{{ convertion.amount }}</td>
+                      <td>{{ convertion.result }}</td>
+                      <td>{{ convertion.date | date: "short" }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
+            @else {
+              <p class="no-data">You haven’t done any conversion yet!</p>
+            }
+          } 
+          @else {
+            <!-- Admin view -->
+            <div class="search-bar">
+              <label for="userIdInput">User ID:</label>
+              <input
+                type="number"
+                id="userIdInput"
+                [(ngModel)]="userId"
+                placeholder="Enter User ID"
+              />
+              <button (click)="searchConvertions()">Search</button>
+            </div>
+      
+            @if (convertionService.convertions.length > 0) {
+              <table class="user-table">
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Amount</th>
+                    <th>Result</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (convertion of convertionService.convertions; track $index) {
+                    <tr>
+                      <td>{{ convertion.username }}</td>
+                      <td>{{ convertion.code1 }}</td>
+                      <td>{{ convertion.code2 }}</td>
+                      <td>{{ convertion.amount }}</td>
+                      <td>{{ convertion.result }}</td>
+                      <td>{{ convertion.date | date: "short" }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
+            @else {
+              <p class="no-data">The user has not done any conversions yet!</p>
+            }
+          }
+        </div>
+      </main>
+      

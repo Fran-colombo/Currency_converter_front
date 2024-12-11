@@ -7,6 +7,7 @@
          @if(authService.user?.role === "Admin"){ 
             <a [routerLink]="['/user-manage']" routerLinkActive="link-activo">User manage</a>
          }
+         <a [routerLink]="['/convertions']" routerLinkActive="link-activo">Convertions</a>
         <div class="usuario">
             <button (click)="cerrarSesion()" class="logout-button">
                 <img src="/assets/icons/logout.png" alt="Cerrar sesión" class="userlogo"> 

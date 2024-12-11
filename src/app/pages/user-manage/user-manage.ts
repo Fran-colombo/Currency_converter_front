@@ -7,6 +7,7 @@ import { UserService } from '../../services/user.service';
 import { AuthServicesService } from '../../services/auth-services.service';
 import { UserRole } from '../../enums/user-role';
 import { SubscriptionService } from '../../services/subscription.service';
+import { ConvertionsService } from '../../services/convertions.service';
 // import { IUserToShow } from '../../interfaces/iuser-to-show';
 
 @Component({
@@ -21,14 +22,26 @@ export class UserManageComponent {
    userService = inject(UserService)
    authService = inject(AuthServicesService)
    subService = inject(SubscriptionService)
+   convertionService = inject(ConvertionsService)   
    router = inject(Router)
    showCreateForm = false;
    showUpdateForm = false;
-   errorSignUp = false;
+   errorSignUp = false;    
 
+   ngOnInit() {
+    this.loadUsers();
+  }
 
-    
-  errorLogin = false
+  async loadUsers() {
+    try {
+      const users = await this.userService.getAllUsers(); 
+      if (users) {
+        this.userService.user = users; 
+      }
+    } catch (error) {
+      console.error('Error loading users:', error);
+    }
+  }
 
 
 async openCreateUserModal() {
