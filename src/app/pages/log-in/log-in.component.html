@@ -1,14 +1,28 @@
-<main>
+  <main>
     <div id="centro">
-        <h1>Currency Converter</h1>
-        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-            <input type="text" id="username" placeholder="Usuario" name="Username" ngModel required>
-            <input type="password" id="password" placeholder="Contraseña" name="Password" ngModel required>
-            <button [disabled]="loginForm.invalid" class="boton-resaltado" type="submit">Log in</button>
-            @if(errorLogin) {
-                <p>Error en login</p>
+      <h3>Welcome back to CryptoCurrency, the most reliable Currency Converter in the world! Or in the crypto world I should say(! </h3>
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <div class="input-container">
+          <input type="text" id="username" placeholder="Usuario" name="Username" ngModel required />
+        </div>
+        <div class="input-container password-container">
+          <input type="password" id="password" placeholder="Contraseña" name="Password" ngModel required />
+          <button (click)="showPassword()" tabindex="-1" type="button" class="show-hide">
+            @if (!passwordVisibility){
+              <img src="/assets/icons/stop-seeing.svg">
+            } @else {
+              <img src="/assets/icons/see-password.svg">
             }
-        </form>
-        <a [routerLink]="['/signUp']">Sign up</a>
+          </button>
+        </div>
+        <button [disabled]="loginForm.invalid" type="submit">
+          Log in
+        </button>
+        @if(errorLogin){
+            <p>Error en login </p>}
+      </form>
+      <p>You don´t have an account? <span><a [routerLink]="['/signUp']" class="sign-up-link">Sign up</a></span></p>
+      
     </div>
-</main>
+  </main>
+  

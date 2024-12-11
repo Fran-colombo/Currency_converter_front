@@ -68,5 +68,30 @@ main {
     color: #0affff;
     text-shadow: 0 0 15px #0affff;
   }
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #0f172a;
+    background-color: #63f7f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #63f7f0;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
   
+    &:hover {
+      background-color: #0affff;
+      box-shadow: 0 0 20px #0affff;
+    }
+  
+    &:disabled {
+      background-color: rgba(99, 247, 240, 0.5);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+  }
   

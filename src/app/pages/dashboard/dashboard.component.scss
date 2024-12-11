@@ -5,6 +5,9 @@ header {
     padding: 10px 20px;
     margin-top: 10px;
     max-height: 10vh;
+    max-width: 100%; /* Evitar desbordamiento horizontal */
+    overflow: hidden; /* Cortar cualquier contenido que sobresalga */
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -94,3 +97,10 @@ header {
         }
     }
 }
+main > *:first-child {
+    margin-top: 0;
+  }
+  
+  main > *:last-child {
+    margin-bottom: 0;
+  }

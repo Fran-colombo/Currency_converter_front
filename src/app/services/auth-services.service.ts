@@ -19,15 +19,9 @@ export class AuthServicesService {
 
   constructor() {
     this.initializeUserFromStorage();
-    // this.loadData();
   }
 
 
-  
-  //  async loadData() {
-  //   // await this.signUp();
-  // }
-  
   private parseJwt(token: string): any {
     const payloadBase64 = token.split('.')[1];
     const payloadJson = atob(payloadBase64);

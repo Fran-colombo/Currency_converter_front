@@ -1,0 +1,138 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  main {
+    background: url("/assets/img/login.jpg") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  #centro {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  h3 {
+    color: #00ffff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    margin-top:0px;
+  }
+  p{
+    color: #00ffff;
+  }
+
+  .input-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px 15px;
+    padding-right: 45px; /* Espacio reservado para el botón */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+  
+    &:focus {
+      border-color: #00ffff;
+      box-shadow: 0 0 10px #00ffff;
+    }
+  }
+  
+  .password-container {
+    position: relative;
+  
+    input {
+      padding-right: 45px; /* Espacio para el botón */
+    }
+  
+    .show-hide {
+        width: 10%;
+      position: absolute; 
+      top: 50%; 
+      right: 10px; 
+      transform: translateY(-50%); 
+      background: transparent; 
+      border: none; 
+      cursor: pointer;
+      padding: 5px; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      img {
+        width: 20px; /* Tamaño del ícono */
+        height: 20px;
+        transition: transform 0.2s ease; /* Animación suave */
+      }
+  
+      &:hover img {
+        transform: scale(1.1); /* Efecto hover */
+      }
+    }
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    color: #000;
+    background-color: #00ffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  
+    &:hover {
+      background-color: #00b3b3;
+      box-shadow: 0 0 15px #00ffff;
+    }
+  
+    &:disabled {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: rgba(255, 255, 255, 0.5);
+      cursor: not-allowed;
+    }
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  
+  .sign-up-link {
+    color: #00ffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 15px;
+    transition: color 0.3s ease;
+  
+    &:hover {
+      color: #00b3b3;
+    }
+  }
+  

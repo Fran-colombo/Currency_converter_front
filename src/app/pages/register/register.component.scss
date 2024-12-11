@@ -1,0 +1,120 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  main {
+    background: url("/assets/img/register.jpg") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  #create-user {
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 20px 25px; /* Compacto */
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 25px rgba(0, 255, 255, 0.3);
+    text-align: center;
+    width: 90%;
+    max-width: 350px;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+  
+    &:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.5);
+    }
+  
+    h2 {
+      font-size: 1.8rem;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      margin-bottom: 15px;
+    }
+  
+    label {
+      display: block;
+      font-size: 0.9rem;
+      color: #fff;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+  }
+  
+  .input-container {
+    margin-bottom: 15px;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+  
+    &:focus {
+      border-color: #00ffff;
+      box-shadow: 0 0 10px #00ffff;
+    }
+  }
+  
+  select {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #00ffff;
+  }
+  
+  button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    color: #000;
+    background-color: #00ffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  
+    &:hover {
+      background-color: #00b3b3;
+      box-shadow: 0 0 15px #00ffff;
+    }
+  
+    &:disabled {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: rgba(255, 255, 255, 0.5);
+      cursor: not-allowed;
+    }
+  }
+  
+  .log-in-link {
+    color: #00ffff;
+    text-decoration: underline;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    display: inline-block;
+    transition: color 0.3s ease;
+  
+    &:hover {
+      color: #00b3b3;
+    }
+  }
+  p{
+    color: #00ffff;
+    padding: 8px 12px;
+  }
+  

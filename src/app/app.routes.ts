@@ -8,6 +8,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserManageComponent } from './pages/user-manage/user-manage';
 import { soloPublicoGuard } from './guards/solo-publico-guard';
 import { CurrenciesComponent } from './pages/currencies/currencies.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 export const routes: Routes = [
     {
@@ -48,6 +49,10 @@ export const routes: Routes = [
         component: NotFoundComponent
     },
 
+    {
+        path: "signUp",
+        component: RegisterComponent
+    },
     {
         path: "**",
         redirectTo: "not-found",

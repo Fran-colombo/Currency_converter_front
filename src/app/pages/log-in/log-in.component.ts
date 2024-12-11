@@ -36,4 +36,12 @@ export class LogInComponent {
       });
     }
   }
+
+
+passwordVisibility: boolean = false;
+showPassword(){
+  this.passwordVisibility = !this.passwordVisibility;
+  const passwordInput = document.getElementById('password') as HTMLInputElement;
+  passwordInput.type = this.passwordVisibility ? 'text' : 'password';
+}
 }
