@@ -3,7 +3,7 @@ export interface IConvertions {
     code1: number,
     code2: number,
     amount: number,
-    result: number,
+    result: string,
     date: Date
 }
  

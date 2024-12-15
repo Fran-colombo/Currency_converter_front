@@ -4,9 +4,9 @@
     <h4>Hi {{ user.username }}!</h4>
     <nav>
         <a [routerLink]="['/currencies']" routerLinkActive="link-activo">Currencies</a>
-         @if(authService.user?.role === "Admin"){ 
+         <!-- @if(authService.user?.role === "Admin"){  -->
             <a [routerLink]="['/user-manage']" routerLinkActive="link-activo">User manage</a>
-         }
+         <!-- } -->
          <a [routerLink]="['/convertions']" routerLinkActive="link-activo">Convertions</a>
         <div class="usuario">
             <button (click)="cerrarSesion()" class="logout-button">

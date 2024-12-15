@@ -36,7 +36,7 @@ export const routes: Routes = [
             {
                 path: "user-manage",
                 component: UserManageComponent,
-                canActivate: [soloAdminGuard]
+                canActivate: [soloLogueadoGuard]
             },
             {
                 path : "convertions",

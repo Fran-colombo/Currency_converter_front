@@ -53,6 +53,8 @@ export class AuthServicesService {
     }
   }
 
+
+
   async login(loginData: ILogin): Promise<void> {
     try {
       const response = await fetch(`${environment.API_URL}Authenticate`, {

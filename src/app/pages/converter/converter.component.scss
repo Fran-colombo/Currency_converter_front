@@ -1,74 +1,180 @@
+// main {
+//     font-family: 'Roboto', sans-serif;
+//     background: url("/assets/img/money-future.jpg") ;
+//     background-size: cover;    
+//     color: #fff;
+//     padding: 20px;
+//     h2, h3, p, button {
+//         font-family: 'Orbitron', sans-serif;
+//       }
+//     span{
+//         box-shadow: red;
+//         color: #ec1818;
+//     }
+//   }
+  
+// #form-container {
+//     width: 40%;
+//     margin: 35px auto;
+//     padding: 35px;
+//     background: rgba(15, 23, 42, 0.9); 
+//     border: 2px solid #63f7f0;
+//     border-radius: 10px;
+//     box-shadow: 0 0 20px #63f7f0, 0 0 40px #0f172a;
+//   }
+  
+//   h2, h3, p {
+//     color: #63f7f0;
+//     text-align: center;
+//     text-shadow: 0 0 8px #63f7f0;
+//   }
+  
+//   .field-container {
+//     margin-bottom: 5px;
+//   }
+  
+//   label {
+//     display: block;
+//     margin-bottom: 8px;
+//     color: #63f7f0;
+//   }
+  
+//   input, select {
+//     width: 90%;
+//     padding: 10px;
+//     background-color: #1e293b;
+//     border: 2px solid #63f7f0;
+//     border-radius: 5px;
+//     color: #63f7f0;
+//     box-shadow: 0 0 10px #63f7f0;
+//   }
+  
+//   input:focus, select:focus {
+//     outline: none;
+//     border-color: #63f7f0;
+//     box-shadow: 0 0 15px #63f7f0;
+//   }
+//   #result-container {
+//     margin-top: 10px;
+//     text-align: center;
+//     color: #63f7f0;
+//     font-size: 20px;
+//     text-shadow: 0 0 8px #63f7f0;
+//   }
+  
+//   #result-value {
+//     font-weight: bold;
+//     font-size: 20px;
+//     color: #0affff;
+//     text-shadow: 0 0 15px #0affff;
+//   }
+//   button {
+//     width: 100%;
+//     padding: 10px;
+//     margin-top: 15px;
+//     align-items: center;
+//     font-size: 1rem;
+//     font-weight: bold;
+//     color: #0f172a;
+//     background-color: #63f7f0;
+//     border: none;
+//     border-radius: 5px;
+//     cursor: pointer;
+//     box-shadow: 0 0 10px #63f7f0;
+//     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  
+//     &:hover {
+//       background-color: #0affff;
+//       box-shadow: 0 0 20px #0affff;
+//     }
+  
+//     &:disabled {
+//       background-color: rgba(99, 247, 240, 0.5);
+//       cursor: not-allowed;
+//       box-shadow: none;
+//     }
+//   }
 main {
     font-family: 'Roboto', sans-serif;
-    background: url("/assets/img/money-future.jpg") ;
+    background: url("/assets/img/money-future.jpg");
     background-size: cover;    
     color: #fff;
     padding: 20px;
+
     h2, h3, p, button {
         font-family: 'Orbitron', sans-serif;
-      }
-    span{
+    }
+    span {
         box-shadow: red;
         color: #ec1818;
     }
-  }
-  
+}
+
 #form-container {
-    width: 40%;
+    width: 60%;
     margin: 35px auto;
     padding: 35px;
     background: rgba(15, 23, 42, 0.9); 
     border: 2px solid #63f7f0;
     border-radius: 10px;
     box-shadow: 0 0 20px #63f7f0, 0 0 40px #0f172a;
-  }
-  
-  h2, h3, p {
+}
+
+h2, h3, p {
     color: #63f7f0;
     text-align: center;
     text-shadow: 0 0 8px #63f7f0;
-  }
-  
-  .field-container {
-    margin-bottom: 5px;
-  }
-  
-  label {
+}
+
+.horizontal-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.field-container {
+    flex: 1;
+}
+
+label {
     display: block;
     margin-bottom: 8px;
     color: #63f7f0;
-  }
-  
-  input, select {
-    width: 90%;
+}
+
+input, select {
+    width: 100%;
     padding: 10px;
     background-color: #1e293b;
     border: 2px solid #63f7f0;
     border-radius: 5px;
     color: #63f7f0;
     box-shadow: 0 0 10px #63f7f0;
-  }
-  
-  input:focus, select:focus {
+}
+
+input:focus, select:focus {
     outline: none;
     border-color: #63f7f0;
     box-shadow: 0 0 15px #63f7f0;
-  }
-  #result-container {
+}
+
+#result-container {
     margin-top: 10px;
     text-align: center;
     color: #63f7f0;
     font-size: 20px;
     text-shadow: 0 0 8px #63f7f0;
-  }
-  
-  #result-value {
+}
+
+#result-value {
     font-weight: bold;
     font-size: 20px;
     color: #0affff;
     text-shadow: 0 0 15px #0affff;
-  }
-  button {
+}
+
+button {
     width: 100%;
     padding: 10px;
     margin-top: 15px;
@@ -82,16 +188,15 @@ main {
     cursor: pointer;
     box-shadow: 0 0 10px #63f7f0;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  
+
     &:hover {
-      background-color: #0affff;
-      box-shadow: 0 0 20px #0affff;
+        background-color: #0affff;
+        box-shadow: 0 0 20px #0affff;
     }
-  
+
     &:disabled {
-      background-color: rgba(99, 247, 240, 0.5);
-      cursor: not-allowed;
-      box-shadow: none;
+        background-color: rgba(99, 247, 240, 0.5);
+        cursor: not-allowed;
+        box-shadow: none;
     }
-  }
-  
+}

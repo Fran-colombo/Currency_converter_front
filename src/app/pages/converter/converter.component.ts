@@ -98,20 +98,40 @@ export class ConverterComponent {
       this.currencyService.loadData();
     } else {
       console.log("You don´t have more convertions")
-    
-
-    this.showUpgradeMembershipAlert();
+      this.showUpgradeMembershipAlert();
       
     
   }}
+  // showUpgradeMembershipAlert() {
+  //   Swal.fire({
+  //     icon: 'error',
+  //     title: 'Uy',
+  //     text: 'You’ve reached your conversion limit!',
+
+  //   });
+  //   this.router.navigate(['/user-manage']);
+  // }}
+
   showUpgradeMembershipAlert() {
     Swal.fire({
       icon: 'error',
       title: 'Uy',
       text: 'You’ve reached your conversion limit!',
+      showCancelButton: true, // Muestra un segundo botón
+      confirmButtonText: 'Upgrade Membership', // Texto del botón de confirmación
+      cancelButtonText: 'Stay with Current Plan', // Texto del botón de cancelar
+      reverseButtons: true, // Invierte el orden de los botones
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // El usuario elige "Upgrade Membership"
+        this.router.navigate(['/user-manage']);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // El usuario elige "Stay with Current Plan"
+        console.log('User chose to stay with the current plan.');
+      }
     });
-  }}
-
+  }
+}  
 
   
 

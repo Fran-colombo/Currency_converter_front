@@ -1,4 +1,5 @@
 <main class="container">
+  @if(authService.user?.role === "Admin" ){
     <h1>User Management</h1>
   
     <!-- Tabla de usuarios -->
@@ -15,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Iteración de usuarios -->
+        
         @for (user of userService.user; track $index) {
           <tr>
             <td>{{ user.username }}</td>
@@ -39,4 +40,26 @@
     <button (click)="openCreateUserModal()" class="btn btn-create">
       +
     </button>
-    
+  }
+
+
+@if(users && users.length > 0){
+  @for(user of users; track $index){
+    <h3>{{ user.username }}</h3>
+    <p>Email: {{ user.email }}</p>
+    <p>Subscription: {{ user.subscription.subscriptionType }}</p>
+    <p  [class.max-conversions]="user.conversions >= user.subscription.maxConversions"> Conversions: {{ user.conversions }}</p>
+    <p> Max Conversions {{user.subscription.maxConversions}}</p>
+    <p>Role: {{ user.role }}</p>
+    <button (click)="updateUser(undefined, user?.subscription?.subId ?? 0)" class="btn btn-update">Update Subscription</button>
+  }
+  }
+@else {
+  noData
+  <ng-template #noData>
+    <p>No user data available.</p>
+  </ng-template>
+}
+
+
+</main>

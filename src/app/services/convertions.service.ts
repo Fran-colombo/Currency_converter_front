@@ -31,7 +31,6 @@ export class ConvertionsService {
       this.convertions = resJson.map(convertion => ({
         ...convertion,
         amount: convertion.amount > 1 ? parseFloat(convertion.amount.toFixed(1)) : parseFloat(convertion.amount.toFixed(3)) ,
-        result: convertion.result > 1 ? parseFloat(convertion.result.toFixed(1)) : parseFloat(convertion.amount.toFixed(3)) ,
       }));
       
     }
@@ -45,44 +44,55 @@ export class ConvertionsService {
       })
       const resJson: IConvertions[] = await res.json();
       this.convertions = resJson;
+
       this.convertions = resJson.map(convertion => ({
         ...convertion,
         amount: convertion.amount > 1 ? parseFloat(convertion.amount.toFixed(1)) : parseFloat(convertion.amount.toFixed(3)) ,
-        result: convertion.result > 1 ? parseFloat(convertion.result.toFixed(1)) : parseFloat(convertion.amount.toFixed(3)) ,
       }));
+   
+      
       if (res.status === 200){ return  true;}
       if(res.status === 401) return;
       return false;
     }
 
-    async makeConvertion(formData: IConvertion) {
-      try {
-        const response = await fetch(
-          `${environment.API_URL}Convertion/conv`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              authorization: 'Bearer ' + localStorage.getItem('authToken'),
-            },
-            body: JSON.stringify(formData),
-          }
-        );
+  async makeConvertion(formData: IConvertion) {
+    try {
+      const response = await fetch(`${environment.API_URL}Convertion/conv`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: 'Bearer ' + localStorage.getItem('authToken'),
+        },
+        body: JSON.stringify(formData),
+      });
   
-        if (response.status === 200) {
-          const resJson = await response.json();
-          this.loadData();
-          return resJson;
-        } else if (response.status === 204) {
-          console.log("You reached the top of convertions you can do, if you want to do more upgrade you sub type");
-          return null;
-        } else {
-          console.error('Conversion fallida');
-          return false;
+      if (response.status === 200) {
+        const resText = await response.text();
+        let result;
+  
+        try {
+          result = JSON.parse(resText); // Intenta parsear como JSON.
+        } catch {
+          result = resText; // Si falla, usa el texto como está.
         }
-      } catch (error) {
-        console.error('Error en el proceso de conversión:', error);
+  
+        this.loadData();
+        console.log(result);
+        return result;
+      } else if (response.status === 204) {
+        console.log(
+          "You reached the top of convertions you can do, if you want to do more upgrade your sub type"
+        );
+        return null;
+      } else {
+        console.error('Conversion fallida');
         return false;
       }
+    } catch (error) {
+      console.error('Error en el proceso de conversión:', error);
+      return false;
+    }
   }
+  
   }
