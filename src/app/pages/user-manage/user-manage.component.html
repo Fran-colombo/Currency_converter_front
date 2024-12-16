@@ -42,7 +42,7 @@
     </button>
   }
 
-
+@else{
 @if(users && users.length > 0){
   @for(user of users; track $index){
     <h3>{{ user.username }}</h3>
@@ -60,6 +60,6 @@
     <p>No user data available.</p>
   </ng-template>
 }
-
+}
 
 </main>

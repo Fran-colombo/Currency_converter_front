@@ -1,163 +1,4 @@
-// $primary-color: #1a3c63; // Azul oscuro
-// $secondary-color: #00bcd4; // Azul claro
-// $highlight-color: #0c9dbf; // Azul brillante
-// $text-color: #e5e5e5;
-// $background-color: #021d2f; // Fondo oscuro
 
-// body {
-//   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-//   background: linear-gradient(135deg, #020c1b, #00203d);
-//   color: $text-color;
-//   margin: 0;
-//   padding: 0;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   min-height: 100vh;
-// }
-
-
-
-// .container {
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   background: url("/assets/img/history.jpg");
-//   background-size: cover; 
-//   align-items: center;
-//   width: 90%;
-//   max-width: 1200px;
-//   padding: 20px;
-//   background: rgba(0, 36, 63, 0.8);
-//   border-radius: 15px;
-//   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-//   overflow: hidden;
-// }
-
-// h1 {
-//   text-align: center;
-//   color: $secondary-color;
-//   font-size: 2.5rem;
-//   font-weight: bold;
-//   margin-bottom: 20px;
-//   animation: glow 1.5s infinite alternate;
-// }
-
-// .search-bar {
-//   margin-bottom: 20px;
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: center;
-//   align-items: center;
-//   gap: 15px;
-
-//   label {
-//     font-size: 1.2rem;
-//     color: $text-color;
-//   }
-
-//   input {
-//     padding: 10px;
-//     font-size: 1rem;
-//     border: 2px solid $highlight-color;
-//     border-radius: 5px;
-//     background-color: rgba(0, 28, 45, 0.9);
-//     color: $text-color;
-//     transition: all 0.3s ease;
-
-//     &:focus {
-//       border-color: $secondary-color;
-//       outline: none;
-//     }
-//   }
-
-//   button {
-//     padding: 10px 20px;
-//     background-color: $highlight-color;
-//     color: #fff;
-//     border: none;
-//     border-radius: 5px;
-//     cursor: pointer;
-//     transition: background-color 0.3s ease;
-
-//     &:hover {
-//       background-color: $secondary-color;
-//     }
-//   }
-// }
-
-// .user-table {
-//   width: 100%;
-//   border-collapse: collapse;
-//   margin-top: 20px;
-
-//   th, td {
-//     padding: 12px;
-//     text-align: center;
-//     font-size: 1rem;
-//     border-bottom: 1px solid $highlight-color;
-//   }
-
-//   th {
-//     background: rgba(12, 157, 191, 0.8);
-//     color: $text-color;
-//   }
-
-//   tr:nth-child(even) {
-//     background: rgba(0, 28, 45, 0.5);
-//   }
-
-//   tr:hover {
-//     background: rgba(0, 44, 70, 0.7);
-//   }
-
-//   td {
-//     color: #ccc;
-//   }
-// }
-
-// p {
-//   text-align: center;
-//   color: $secondary-color;
-//   font-size: 1.2rem;
-//   margin-top: 20px;
-// }
-
-// @media (max-width: 768px) {
-//   main {
-//     padding: 15px;
-//   }
-
-//   h1 {
-//     font-size: 2rem;
-//   }
-
-//   .search-bar {
-//     flex-direction: column;
-//   }
-
-//   .user-table th, .user-table td {
-//     font-size: 0.9rem;
-//   }
-
-//   .search-bar input, .search-bar button {
-//     width: 100%;
-//     margin-top: 10px;
-//   }
-// }
-
-// @keyframes glow {
-//   0% {
-//     text-shadow: 0 0 5px $highlight-color, 0 0 10px $highlight-color;
-//   }
-//   50% {
-//     text-shadow: 0 0 15px $highlight-color, 0 0 25px $highlight-color;
-//   }
-//   100% {
-//     text-shadow: 0 0 5px $highlight-color, 0 0 10px $highlight-color;
-//   }
-// }
-// Variables de colores para un diseño futurista
 $background-color: #0d1117;
 $text-color: #c9d1d9;
 $accent-color: #58a6ff;
@@ -280,6 +121,28 @@ h1 {
 
     &::placeholder {
       color: lighten($text-color, 20%);
+    }
+   
+  }
+  select {
+    padding: 10px;
+    border: 2px solid $accent-color;
+    border-radius: 4px;
+    background-color: $table-row-hover-color;
+    color: $text-color;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: lighten($accent-color, 10%);
+      outline: none;
+      box-shadow: 0 0 5px rgba($accent-color, 0.8);
+    }
+
+    option {
+      background-color: $background-color;
+      color: $text-color;
     }
   }
 

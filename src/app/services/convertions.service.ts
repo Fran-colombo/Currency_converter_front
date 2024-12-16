@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IConvertions } from '../interfaces/iconvertions';
 import { environment } from '../../environments/environment.development';
 import { IConvertion } from '../interfaces/iconvertion';
+import { IGetConvertions } from '../interfaces/iget-convertions';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,36 @@ export class ConvertionsService {
       if(res.status === 401) return;
       return false;
     }
+
+    async getUserConvertionsByMonth(formGetConvData: IGetConvertions) {
+      const { username, month } = formGetConvData;
+      const res = await fetch(`${environment.API_URL}Convertion/user/${username}?month=${month}`, {
+        method: "GET",
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('authToken'),
+        },
+      });
+    
+      if (res.status === 200) {
+        const resJson: IConvertions[] = await res.json();
+        this.convertions = resJson.map(convertion => ({
+          ...convertion,
+          amount: convertion.amount > 1
+            ? parseFloat(convertion.amount.toFixed(1))
+            : parseFloat(convertion.amount.toFixed(3)),
+        }));
+        return true;
+      }
+    
+      if (res.status === 401) {
+        console.error('Unauthorized');
+        return false;
+      }
+    
+      console.error('Failed to fetch user conversions');
+      return false;
+    }
+    
 
   async makeConvertion(formData: IConvertion) {
     try {

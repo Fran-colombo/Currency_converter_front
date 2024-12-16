@@ -95,6 +95,7 @@ export class UserService {
             }
         
             // Si la respuesta es correcta
+            this.loadData();
             return { success: true, message: data.message };
           } catch (error) {
             // Si ocurre un error inesperado

@@ -3,7 +3,7 @@
         <h1>Conversion History</h1>
       
         <div class="card">
-          @if (authService.user?.role != "Admin") {
+          @if (authService.user?.role === "User") {
             @if (convertionService.convertions.length > 0) {
               <table class="user-table">
                 <thead>
@@ -33,17 +33,27 @@
             }
           } 
           @else {
-            <!-- Admin view -->
+
             <div class="search-bar">
-              <label for="userIdInput">User ID:</label>
+              <label for="usernameInput">Username:</label>
               <input
-                type="number"
-                id="userIdInput"
-                [(ngModel)]="userId"
-                placeholder="Enter User ID"
+                type="string"
+                id="usernameInput"
+                [(ngModel)]="formGetConvData.username"
+                placeholder="Enter Username"
               />
-              <button (click)="searchConvertions()">Search</button>
+            
+              <label for="monthSelect">Month:</label>
+              <select id="monthSelect" [(ngModel)]="formGetConvData.month">
+                <option value="0" disabled>Select a Month</option>
+                <option *ngFor="let month of months" [value]="month.value">
+                  {{ month.name }}
+                </option>
+              </select>
+            
+              <button (click)="searchConvertions(formGetConvData)">Search</button>
             </div>
+            
       
             @if (convertionService.convertions.length > 0) {
               <table class="user-table">
@@ -72,7 +82,7 @@
               </table>
             }
             @else {
-              <p class="no-data">The user has not done any conversions yet!</p>
+              <p class="no-data">The user has not done any conversions this month yet!</p>
             }
           }
         </div>
