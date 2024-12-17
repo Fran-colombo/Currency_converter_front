@@ -35,6 +35,7 @@ export class ConverterComponent {
   userService = inject(UserService)
   userData: any = null;
   convLeft: number | null = null;
+  isLoading = false;
   
   
   constructor() {
@@ -46,6 +47,7 @@ export class ConverterComponent {
   }
 
   async getUserDetail() {
+    this.isLoading = true;
     const username = this.usercomp?.user?.username; 
     if (username) {
       try {
@@ -60,6 +62,7 @@ export class ConverterComponent {
     } else {
       console.error('No se encontró el username del usuario logueado');
     }
+    this.isLoading = false;
   }
 
     

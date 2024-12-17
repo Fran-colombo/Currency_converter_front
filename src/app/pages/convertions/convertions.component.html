@@ -4,7 +4,20 @@
       
         <div class="card">
           @if (authService.user?.role === "User") {
-            @if (convertionService.convertions.length > 0) {
+            <div class="search-bar">
+              <label for="monthSelect">Select Month:</label>
+              <select id="monthSelect" [(ngModel)]="formGetConvData.month">
+                <option value="0" disabled>Select a Month</option>
+                <option *ngFor="let month of months" [value]="month.value">
+                  {{ month.name }}
+                </option>
+              </select>
+              <button (click)="searchConvertionsForUser(formGetConvData.month)">Search</button>
+            </div>
+            @if (isLoading) {
+              <p>Loading...</p>
+            }
+            @else if (convertionService.convertions.length > 0) {
               <table class="user-table">
                 <thead>
                   <tr>
@@ -29,7 +42,7 @@
               </table>
             }
             @else {
-              <p class="no-data">You haven’t done any conversion yet!</p>
+              <p class="no-data">You haven’t done any conversion this month!</p>
             }
           } 
           @else {

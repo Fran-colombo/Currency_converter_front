@@ -1,8 +1,11 @@
-<main class="container">
-  @if(authService.user?.role === "Admin" ){
+<!-- <main class="container">
+  @if (isLoading) {
+    <p>Loading...</p>
+  }
+  @else if(authService.user?.role === "Admin" ){
     <h1>User Management</h1>
   
-    <!-- Tabla de usuarios -->
+     Tabla de usuarios 
     <table class="user-table">
       <thead>
         <tr>
@@ -62,4 +65,76 @@
 }
 }
 
+</main> -->
+<main class="container">
+  <!-- Mensaje de carga -->
+  @if (isLoading) {
+    <p>Loading...</p>
+  }
+  
+  <!-- Bloque de Admin -->
+  @else if (authService.user?.role === "Admin") {
+    <h1>User Management</h1>
+  
+    <!-- Tabla de usuarios -->
+    @if (userService.user && userService.user.length > 0) {
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Subscription Type</th>
+            <th>Conversions</th>
+            <th>Max Conversions</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of userService.user; track $index) {
+            <tr>
+              <td>{{ user.username }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.subscription.subscriptionType }}</td>
+              <td [class.max-conversions]="user.conversions >= user.subscription.maxConversions">
+                {{ user.conversions }}
+              </td>
+              <td>{{ user.subscription.maxConversions }}</td>
+              <td [attr.data-role]="user.role">{{ user.role }}</td>
+              <td class="actions">
+                <button (click)="updateUser(user.username, user.subscription.subId)" class="btn btn-update">Update</button>
+                <button (click)="DeleteUser(user.username)" class="btn btn-delete">Delete</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <button (click)="openCreateUserModal()" class="btn btn-create">+</button>
+    }
+    @else {
+      <p>No user data available.</p>
+    }
+  }
+  
+  <!-- Bloque para otros roles -->
+  @else {
+    @if (users && users.length > 0) {
+      @for (user of users; track $index) {
+        <div class="user-card">
+          <h3>{{ user.username }}</h3>
+          <p>Email: {{ user.email }}</p>
+          <p>Subscription: {{ user.subscription.subscriptionType }}</p>
+          <p [class.max-conversions]="user.conversions >= user.subscription.maxConversions">
+            Conversions: {{ user.conversions }}
+          </p>
+          <p>Max Conversions: {{ user.subscription.maxConversions }}</p>
+          <p>Role: {{ user.role }}</p>
+          <button (click)="updateUser(undefined, user?.subscription?.subId ?? 0)" class="btn btn-update">Update Subscription</button>
+        </div>
+      }
+    }
+    @else {
+      <p>No user data available.</p>
+    }
+  }
 </main>

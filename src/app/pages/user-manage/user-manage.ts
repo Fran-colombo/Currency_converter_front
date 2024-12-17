@@ -27,7 +27,8 @@ export class UserManageComponent {
    router = inject(Router)
    showCreateForm = false;
    showUpdateForm = false;
-   errorSignUp = false;    
+   errorSignUp = false;   
+   isLoading = false; 
   users: IUserToShow[] = []; // Cambia a un único usuario o null
 
 
@@ -36,22 +37,49 @@ export class UserManageComponent {
   }
 
 
-async loadUsers() {
-  const adm = this.authService.user?.role === "Admin";
-  if (adm) {
-    try {
+// async loadUsers() {
+//   this.isLoading = true;
+//   const adm = this.authService.user?.role === "Admin";
+//   if (adm) {
+//     try {
+//       const users = await this.userService.getAllUsers();
+//       if (users) {
+//         this.users = users; // Asigna todos los usuarios
+//         this.isLoading = false;
+//       }
+//     } catch (error) {
+//       console.error('Error loading users:', error);
+//     }
+//   } else {
+//     await this.getUserById();
+//     this.isLoading = false;
+//   }
+// }
+async loadUsers(): Promise<void> {
+  this.isLoading = true; // Activa el estado de carga
+
+  try {
+    const isAdmin = this.authService.user?.role === "Admin";
+
+    if (isAdmin) {
       const users = await this.userService.getAllUsers();
-      if (users) {
-        this.users = users; // Asigna todos los usuarios
-      }
-    } catch (error) {
-      console.error('Error loading users:', error);
+      this.users = users || []; // Asegura que siempre sea un array
+    } else {
+      await this.getUserById();
     }
-  } else {
-    await this.getUserById();
-    
+  } catch (error) {
+    console.error('Error loading users:', error);
+    // Aquí puedes mostrar un mensaje al usuario, como un toast o una alerta
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'An error occurred while loading users.',
+    });
+  } finally {
+    this.isLoading = false; // Desactiva el estado de carga en todos los casos
   }
 }
+
 
 async getUserById(): Promise<void> {
   try {

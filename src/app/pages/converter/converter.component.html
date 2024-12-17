@@ -1,69 +1,3 @@
-<!-- <div class="user-data">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
-   <main>
-    <form
-      #ConverterForm="ngForm"
-      (ngSubmit)="ConverterFormData(ConverterForm)"
-      id="form-container"
-    >
-      <h2 id="title">In a world where traditional currency is losing its grip, CryptoCurrency rises as the global player, shaping the future of the world one block at a time.</h2>
-      <h3>Welcome, {{ userData?.username }} </h3>
-      <p>You have performed {{ userData?.conversions }} convertions so far! <span>
-        @if((userData?.subscription.maxConversions - userData?.conversions)<10){
-          remind that you have {{userData?.subscription.maxConversions - userData?.conversions}} convertions left!
-        } </span> </p>
-
-        <div class="field-container">
-          <label for="Code1">From</label>
-          <select name="Code1" id="Code1" required ngModel>
-            @for (currency of currencyService.currency; track $index) {
-            <option value="{{ currency.code }}">
-              {{ CurrencyName(currency) }}
-            </option>
-            }
-          </select>
-        </div>
-        <div class="field-container">
-          <label for="Code2">To</label>
-          <select name="Code2" id="Code2" required ngModel>
-            @for (currency of currencyService.currency; track $index) {
-            <option value="{{ currency.code }}">
-              {{ CurrencyName(currency) }}
-            </option>
-            }
-          </select>
-        </div>
-        <div id="input-container">
-          <div class="field-container">
-            <label for="Amount">Amount you would like to convert</label>
-            <input
-              type="text"
-              maxlength="20"
-              (input)="validateInput($event)"
-              placeholder="500"
-              name="Amount"
-              id="Amount"
-              required
-              ngModel
-            />
-          </div>
-      </div>
-      <button
-        [disabled]="ConverterForm.invalid"
-        type="submit"
-        class="important-button"
-      >
-        Convert
-      </button>
-      @if (resultConversion !== null) {
-      <div id="result-container">
-        <p id="result-text">Result:</p>
-        <span id="result-value"> {{ resultConversion.toLocaleString("es-Ar")  }}</span>
-      </div>
-      }
-    </form>
-  </main> -->
   <div class="user-data">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     
@@ -75,10 +9,15 @@
         >
           <h2 id="title">In a world where traditional currency is losing its grip, CryptoCurrency rises as the global player, shaping the future of the world one block at a time.</h2>
           <h3>Welcome, {{ userData?.username }} </h3>
+          @if(isLoading){
+            <p>We are loading your information!</p>
+          }
+          @else{
           <p>You have performed {{ userData?.conversions }} convertions so far! <span>
             @if((userData?.subscription.maxConversions - userData?.conversions)<10){
               remind that you have {{userData?.subscription.maxConversions - userData?.conversions}} convertions left!
             } </span> </p>
+          }
     
           <div class="horizontal-container">
             <div class="field-container">

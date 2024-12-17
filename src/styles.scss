@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+app-converter {
+    display: block;
+    min-height: 100%;
+    flex-direction: column;
+    flex: 1 1 auto; /* El componente crece para ocupar el resto del espacio */
+    display: flex;
+}
+header {
+    flex: 0 0 auto; /* El header ocupa solo su contenido */
+}
+
+
+main {
+    flex: 1;
+    // height: 100vh; /* Asegura que ocupe toda la altura visible */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    font-family: 'Roboto', sans-serif;
+    background: url("/assets/img/money-future.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    padding: 20px;
+}

@@ -18,7 +18,8 @@ convertionService = inject(ConvertionsService)
 authService = inject(AuthServicesService)
 userId: number = 0;
 username: string = ""; 
-formGetConvData: IGetConvertions = { username: "", month: 0 };
+isLoading: boolean = false; 
+formGetConvData: IGetConvertions = { username: "", month: 1 };
 
 
   // async searchConvertions(): Promise<void> {
@@ -76,5 +77,38 @@ formGetConvData: IGetConvertions = { username: "", month: 0 };
     }
   }
   
+  async searchConvertionsForUser(month: number): Promise<void> {
+    if (month > 0 && month <= 12) {
+      this.isLoading = true; // Comienza el estado de carga
+      try {
+        const success = await this.convertionService.getUserConvertionsByMonthForCurrentUser(month);
+        
+        if (!success) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No conversions found for the selected month!',
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Unexpected Error',
+          text: 'Something went wrong. Please try again!',
+        });
+        console.error(error);
+      } finally {
+        this.isLoading = false; // Finaliza el estado de carga
+      }
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        text: 'Please select a valid month!',
+      });
+    }
+  }
+  
+
 }
 

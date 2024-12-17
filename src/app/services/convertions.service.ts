@@ -16,6 +16,7 @@ export class ConvertionsService {
   
    async loadData() {
     await this.getConvertions();
+    // await this.getUserConvertionsByMonthForCurrentUser();
   }
   
   
@@ -35,6 +36,31 @@ export class ConvertionsService {
       }));
       
     }
+
+    async getUserConvertionsByMonthForCurrentUser(month: number = new Date().getMonth() + 1) {
+      const res = await fetch(`${environment.API_URL}Convertion?month=${month}`, {
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('authToken'),
+        },
+      });
+    
+      if (res.status === 200) {
+        const resJson: IConvertions[] = await res.json();
+        this.convertions = resJson.map(convertion => ({
+          ...convertion,
+          amount: convertion.amount > 1
+            ? parseFloat(convertion.amount.toFixed(1))
+            : parseFloat(convertion.amount.toFixed(3)),
+        }));
+        return true;
+      }
+    
+      console.error('Failed to fetch monthly conversions');
+      return false;
+    }
+    
+    
 
     async getUserConvertions(id : number){
       const res = await fetch(environment.API_URL+"Convertion/" + id, {
