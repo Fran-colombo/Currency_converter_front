@@ -29,47 +29,28 @@ export class UserManageComponent {
    showUpdateForm = false;
    errorSignUp = false;   
    isLoading = false; 
-  users: IUserToShow[] = []; // Cambia a un único usuario o null
+  users: IUserToShow[] = []; 
 
 
    ngOnInit() {
     this.loadUsers();
   }
 
-
-// async loadUsers() {
-//   this.isLoading = true;
-//   const adm = this.authService.user?.role === "Admin";
-//   if (adm) {
-//     try {
-//       const users = await this.userService.getAllUsers();
-//       if (users) {
-//         this.users = users; // Asigna todos los usuarios
-//         this.isLoading = false;
-//       }
-//     } catch (error) {
-//       console.error('Error loading users:', error);
-//     }
-//   } else {
-//     await this.getUserById();
-//     this.isLoading = false;
-//   }
-// }
+/** Get the users */
 async loadUsers(): Promise<void> {
-  this.isLoading = true; // Activa el estado de carga
+  this.isLoading = true; 
 
   try {
     const isAdmin = this.authService.user?.role === "Admin";
 
     if (isAdmin) {
       const users = await this.userService.getAllUsers();
-      this.users = users || []; // Asegura que siempre sea un array
+      this.users = users || []; 
     } else {
       await this.getUserById();
     }
   } catch (error) {
     console.error('Error loading users:', error);
-    // Aquí puedes mostrar un mensaje al usuario, como un toast o una alerta
     Swal.fire({
       icon: 'error',
       title: 'Error',
@@ -106,7 +87,7 @@ async getUserById(): Promise<void> {
 
   
 
-
+//** Ask if you wanna create an user */
 async openCreateUserModal() {
   const { value: formValues } = await Swal.fire({
     title: 'Create User',
@@ -147,71 +128,7 @@ async openCreateUserModal() {
   }
 }
 
-  // async register(registerForm: NgForm) {
-
-  //   if (registerForm.invalid) {
-  //     Swal.fire({
-  //       icon: 'warning',
-  //       title: 'Formulario inválido',
-  //       text: 'Por favor, completa todos los campos correctamente.',
-  //       timer: 3000,
-  //     });
-  //     return;
-  //   }
-    
-  //   const {username, password, confirmPassword, email, subscription} = registerForm.value;
-  
-  
-  //   if (password !== confirmPassword) {
-  //     console.log(password, confirmPassword)
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Passwords do not match',
-  //       text: 'Please, be sure that both passwords are equals.',
-  //       timer: 3000,
-  //     });
-  //     return;
-  //   }
-  
-  //   const subscriptionMap = { Free: 1, Trial: 2, Pro: 3 };
-
-  //   const subscriptionId = subscriptionMap[subscription as keyof typeof subscriptionMap];
-  //   if (!subscriptionId) {
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Error en la suscripción',
-  //       text: 'Tipo de suscripción no válido.',
-  //       timer: 3000,
-  //     });
-  //     return;
-  //   }
-  
-  //   const registerData = {
-  //     username,
-  //     password,
-  //     email,
-  //     confirmPassword,
-  //     subscription,
-  //   };
-  
-    
-  //   const response = await this.userService.signUp(registerData);
-  
-  //   if (response) {
-  //     Swal.fire({
-  //       icon: 'success',
-  //       title: 'Registro exitoso',
-  //       timer: 3000,
-  //     });
-  //   } else {
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Something went wrong signing up',
-  //       timer: 3000,
-  //     });
-  //   }
-  // }
-  
+  //** Create a user */
   async register(registerForm: NgForm) {
     if (registerForm.invalid) {
       Swal.fire({
@@ -224,7 +141,7 @@ async openCreateUserModal() {
     }
   
     const { username, password, confirmPassword, email, subscription } = registerForm.value;
-    if(password.length <= 8){
+    if(password.length <= 7){
       Swal.fire({
         icon: 'error',
         title: 'Password length should be longer than 7 characters',
@@ -309,7 +226,9 @@ async openCreateUserModal() {
         }
       })};
     }
+
   
+    //** Update user subscription type */
     async updateUser(username: string | undefined, subId: number | undefined) {
 
     
@@ -322,9 +241,9 @@ async openCreateUserModal() {
         html: `
           <label for="subscriptionType">New Subscription Type:</label>
           <select id="subscriptionType" class="swal2-select">
-            <option value="1" ${subId === 1 ? 'selected' : ''}>Free</option>
-            <option value="2" ${subId === 2 ? 'selected' : ''}>Trial</option>
-            <option value="3" ${subId === 3 ? 'selected' : ''}>Pro</option>
+            <option value="1" ${subId === 1 ? 'selected' : ''}>Free   - $0</option>
+            <option value="2" ${subId === 2 ? 'selected' : ''}>Trial    - $5</option>
+            <option value="3" ${subId === 3 ? 'selected' : ''}>Pro    - $10</option>
           </select>
         `,
         focusConfirm: false,
@@ -353,7 +272,6 @@ async openCreateUserModal() {
             
             res = await this.userService.updateUserSubAsAdmin({ username, subId: formValues.subId });
           } else {
-            
             res = await this.userService.updateUserSub(formValues.subId);
             if (res?.ok) {
               Swal.fire('Success', 'Subscription updated successfully! ', 'success');
@@ -375,6 +293,7 @@ async openCreateUserModal() {
       }
     }
     
+    //** Admin have the possibility to update the subscription type from a user */
     async updateUserByAdmin(username: string, subId: number) {
       // Modal para que el admin seleccione la nueva suscripción
       const { value: formValues } = await Swal.fire({

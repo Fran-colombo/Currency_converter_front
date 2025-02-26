@@ -1,71 +1,3 @@
-<!-- <main>
-<div id="create-user" class="form-container">
-    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
-      <h2>Create User</h2>
-      <label for="username">Username</label>
-      <div class="input-container">
-      <input
-        type="text"
-        id="username"
-        placeholder="Usuario"
-        name="username"
-        ngModel
-        required
-      />
-      </div>
-      <label for="password">Confirm password</label>
-      <div class="input-container">
-      <input
-        type="password"
-        id="password"
-        placeholder="Password"
-        name="password"
-        ngModel
-        required
-      />
-      </div>
-      <label for="confirmPassword">Confirm password</label>
-      <div class="input-container">
-      <input
-        type="password"
-        id="confirmPassword"
-        placeholder="Confirm Password"
-        name="confirmPassword"
-        ngModel
-        required
-      />
-      </div>
-      <label for="email">Email</label>
-      <div class="input-container">
-      <input
-        type="email"
-        id="email"
-        placeholder="Email"
-        name="email"
-        ngModel
-        required
-      />
-    </div>
-      <label for="subscription">Tipo de Suscripción</label>
-      <select id="subscription" name="subscription" class="register-input" ngModel required>
-        <option value="Free">Free</option>
-        <option value="Trial">Trial</option>
-        <option value="Pro">Pro</option>
-      </select>
-      <button
-        [disabled]="registerForm.invalid"
-        class="btn btn-submit"
-        type="submit"
-      >
-        Sign Up
-      </button>
-      @if (errorRegister) {
-        <p>Error en el registro</p>
-      }
-      <p>I already have an account <span><a [routerLink]="['/logIn']" class="sign-up-link">Log in</a></span></p>
-    </form>
-  </div>
-  </main> -->
   <main>
     <div id="create-user" class="form-container">
       <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
@@ -116,9 +48,9 @@
         </div>
         <label for="subscription">Tipo de Suscripción</label>
         <select id="subscription" name="subscription" class="register-input" ngModel required>
-          <option value="Free">Free</option>
-          <option value="Trial">Trial</option>
-          <option value="Pro">Pro</option>
+          <option value="Free">Free - $0</option>
+          <option value="Trial">Trial - $5</option>
+          <option value="Pro">Pro - $10</option>
         </select>
         <button
           [disabled]="registerForm.invalid"

@@ -11,10 +11,10 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ConvertionsComponent } from './pages/convertions/convertions.component';
 
 export const routes: Routes = [
+
     {
         path: "",
-        redirectTo: "logIn",
-        pathMatch: 'full',
+        component: LogInComponent
     },
     {
         path: "logIn",

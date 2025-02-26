@@ -1,0 +1,64 @@
+body {
+    background: radial-gradient(circle at center, #0d0d0d, #1a1a1a);
+    color: #00e1ff;
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.not-found-container {
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+img {
+    width: 300px;
+    filter: drop-shadow(0 0 10px #00e1ff);
+}
+
+.error-message {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00e1ff;
+}
+
+.error-description {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+.back-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(45deg, #00e1ff, #0066ff);
+    border-radius: 5px;
+    box-shadow: 0 0 10px #00e1ff;
+    transition: all 0.3s ease-in-out;
+}
+
+.back-home:hover {
+    background: linear-gradient(45deg, #0066ff, #00e1ff);
+    box-shadow: 0 0 20px #00e1ff;
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

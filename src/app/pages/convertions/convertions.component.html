@@ -12,7 +12,16 @@
                   {{ month.name }}
                 </option>
               </select>
-              <button (click)="searchConvertionsForUser(formGetConvData.month)">Search</button>
+              <label for="yearSelect">Year:</label>
+              <select id="yearSelect" [(ngModel)]="formGetConvData.year">
+                <option id="yearSelec" *ngFor="let year of availableYears" [value]="year">
+                  {{ year }}
+                </option>
+              </select>
+              
+            
+
+              <button (click)="searchConvertionsForUser(formGetConvData.month, formGetConvData.year)">Search</button>
             </div>
             @if (isLoading) {
               <p>Loading...</p>
@@ -42,7 +51,7 @@
               </table>
             }
             @else {
-              <p class="no-data">You haven’t done any conversion this month!</p>
+              <p class="no-data">You haven’t done any conversion that month!</p>
             }
           } 
           @else {
@@ -63,7 +72,15 @@
                   {{ month.name }}
                 </option>
               </select>
-            
+              <label for="yearSelect">Year:</label>
+              <select id="yearSelect" [(ngModel)]="formGetConvData.year">
+                <option id="yearSelec" *ngFor="let year of availableYears" [value]="year">
+                  {{ year }}
+                </option>
+              </select>
+              
+
+              
               <button (click)="searchConvertions(formGetConvData)">Search</button>
             </div>
             
@@ -95,7 +112,7 @@
               </table>
             }
             @else {
-              <p class="no-data">The user has not done any conversions this month yet!</p>
+              <p class="no-data">The user has not done any conversions that month!</p>
             }
           }
         </div>

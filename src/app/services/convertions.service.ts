@@ -37,28 +37,28 @@ export class ConvertionsService {
       
     }
 
-    async getUserConvertionsByMonthForCurrentUser(month: number = new Date().getMonth() + 1) {
-      const res = await fetch(`${environment.API_URL}Convertion?month=${month}`, {
-        method: 'GET',
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('authToken'),
-        },
-      });
+    // async getUserConvertionsByMonthForCurrentUser(month: number = new Date().getMonth() + 1) {
+    //   const res = await fetch(`${environment.API_URL}Convertion?month=${month}`, {
+    //     method: 'GET',
+    //     headers: {
+    //       Authorization: 'Bearer ' + localStorage.getItem('authToken'),
+    //     },
+    //   });
     
-      if (res.status === 200) {
-        const resJson: IConvertions[] = await res.json();
-        this.convertions = resJson.map(convertion => ({
-          ...convertion,
-          amount: convertion.amount > 1
-            ? parseFloat(convertion.amount.toFixed(1))
-            : parseFloat(convertion.amount.toFixed(3)),
-        }));
-        return true;
-      }
+    //   if (res.status === 200) {
+    //     const resJson: IConvertions[] = await res.json();
+    //     this.convertions = resJson.map(convertion => ({
+    //       ...convertion,
+    //       amount: convertion.amount > 1
+    //         ? parseFloat(convertion.amount.toFixed(1))
+    //         : parseFloat(convertion.amount.toFixed(3)),
+    //     }));
+    //     return true;
+    //   }
     
-      console.error('Failed to fetch monthly conversions');
-      return false;
-    }
+    //   console.error('Failed to fetch monthly conversions');
+    //   return false;
+    // }
     
     
 
@@ -83,10 +83,36 @@ export class ConvertionsService {
       return false;
     }
 
-    async getUserConvertionsByMonth(formGetConvData: IGetConvertions) {
-      const { username, month } = formGetConvData;
-      const res = await fetch(`${environment.API_URL}Convertion/user/${username}?month=${month}`, {
-        method: "GET",
+    // async getUserConvertionsByMonth(formGetConvData: IGetConvertions) {
+    //   const { username, month } = formGetConvData;
+    //   const res = await fetch(`${environment.API_URL}Convertion/user/${username}?month=${month}`, {
+    //     method: "GET",
+    //     headers: {
+    //       Authorization: 'Bearer ' + localStorage.getItem('authToken'),
+    //     },
+    //   });
+    
+    //   if (res.status === 200) {
+    //     const resJson: IConvertions[] = await res.json();
+    //     this.convertions = resJson.map(convertion => ({
+    //       ...convertion,
+    //       amount: convertion.amount > 1
+    //         ? parseFloat(convertion.amount.toFixed(1))
+    //         : parseFloat(convertion.amount.toFixed(3)),
+    //     }));
+    //     return true;
+    //   }
+    
+    //   if (res.status === 401) {
+    //     console.error('Unauthorized');
+    //     return false;
+    //   }    
+    //   console.error('Failed to fetch user conversions');
+    //   return false;
+    // }
+    async getUserConvertionsByMonthForCurrentUser(month: number = new Date().getMonth() + 1, year: number = new Date().getFullYear()) {
+      const res = await fetch(`${environment.API_URL}Convertion?month=${month}&year=${year}`, {
+        method: 'GET',
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('authToken'),
         },
@@ -96,21 +122,37 @@ export class ConvertionsService {
         const resJson: IConvertions[] = await res.json();
         this.convertions = resJson.map(convertion => ({
           ...convertion,
-          amount: convertion.amount > 1
-            ? parseFloat(convertion.amount.toFixed(1))
-            : parseFloat(convertion.amount.toFixed(3)),
+          amount: convertion.amount > 1 ? parseFloat(convertion.amount.toFixed(1)) : parseFloat(convertion.amount.toFixed(3)),
         }));
         return true;
       }
     
-      if (res.status === 401) {
-        console.error('Unauthorized');
-        return false;
+      console.error('Failed to fetch monthly conversions');
+      return false;
+    }
+    
+    async getUserConvertionsByMonth(formGetConvData: IGetConvertions) {
+      const { username, month, year } = formGetConvData;
+      const res = await fetch(`${environment.API_URL}Convertion/user/${username}?month=${month}&year=${year}`, {
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('authToken'),
+        },
+      });
+    
+      if (res.status === 200) {
+        const resJson: IConvertions[] = await res.json();
+        this.convertions = resJson.map(convertion => ({
+          ...convertion,
+          amount: convertion.amount > 1 ? parseFloat(convertion.amount.toFixed(1)) : parseFloat(convertion.amount.toFixed(3)),
+        }));
+        return true;
       }
     
       console.error('Failed to fetch user conversions');
       return false;
     }
+    
     
 
   async makeConvertion(formData: IConvertion) {

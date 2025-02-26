@@ -1,4 +1,5 @@
 export interface IGetConvertions {
     username: string,
-    month: number
+    month: number,
+    year: number
 }

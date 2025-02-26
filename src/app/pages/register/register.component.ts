@@ -94,7 +94,7 @@ export class RegisterComponent {
     }
   
     const { username, password, confirmPassword, email, subscription } = registerForm.value;
-    if(password.length <= 8){
+    if(password.length <= 7){
       Swal.fire({
         icon: 'error',
         title: 'Password length should be longer than 7 characters',

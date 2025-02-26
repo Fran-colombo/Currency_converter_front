@@ -35,7 +35,7 @@ export class CurrencyService {
     if (res.status !== 200) return; 
     const resJson: ICurrencyToShow[] = await res.json();
     this.currency = resJson;
-    console.log(resJson);
+    // console.log(resJson);
    
   }
 

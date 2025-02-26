@@ -13,7 +13,7 @@
             <p>We are loading your information!</p>
           }
           @else{
-          <p>You have performed {{ userData?.conversions }} convertions so far! <span>
+          <p>You have performed {{ userData?.conversions }} convertions so far this month! <span>
             @if((userData?.subscription.maxConversions - userData?.conversions)<10){
               remind that you have {{userData?.subscription.maxConversions - userData?.conversions}} convertions left!
             } </span> </p>
@@ -64,7 +64,7 @@
           @if (resultConversion !== null) {
           <div id="result-container">
             <p id="result-text">Result:</p>
-            <span id="result-value"> {{ resultConversion.toLocaleString("es-Ar")  }}</span>
+            <span id="result-value"> {{  resultConversion.toLocaleString("es-Ar")  }}</span>
           </div>
           }
         </form>

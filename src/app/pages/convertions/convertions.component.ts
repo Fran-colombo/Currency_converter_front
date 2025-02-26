@@ -19,28 +19,11 @@ authService = inject(AuthServicesService)
 userId: number = 0;
 username: string = ""; 
 isLoading: boolean = false; 
-formGetConvData: IGetConvertions = { username: "", month: 1 };
-
-
-  // async searchConvertions(): Promise<void> {
-  //   if (this.userId > 0) {
-  //     const success = await this.convertionService.getUserConvertions(this.userId);
-      
-  //     if (!success) {
-  //       Swal.fire({
-  //         icon: 'error',
-  //         title: 'Error',
-  //         text: 'User ID does not exist!',
-  //       });
-  //     }
-  //   } else {
-  //     Swal.fire({
-  //       icon: 'warning',
-  //       title: 'Warning',
-  //       text: 'Please enter a valid User ID!',
-  //     });
-  //   }
-  // }
+currentYear = new Date().getFullYear();
+availableYears = Array.from(
+  new Set(Array.from({ length: 25 }, (_, i) => this.currentYear - i))
+);
+formGetConvData: IGetConvertions = { username: "", month: 1 ,year : this.currentYear};
 
   months = [
     { name: 'January', value: 1 },
@@ -77,17 +60,47 @@ formGetConvData: IGetConvertions = { username: "", month: 1 };
     }
   }
   
-  async searchConvertionsForUser(month: number): Promise<void> {
-    if (month > 0 && month <= 12) {
-      this.isLoading = true; // Comienza el estado de carga
-      try {
-        const success = await this.convertionService.getUserConvertionsByMonthForCurrentUser(month);
+  // async searchConvertionsForUser(month: number): Promise<void> {
+  //   if (month > 0 && month <= 12) {
+  //     this.isLoading = true; // Comienza el estado de carga
+  //     try {
+  //       const success = await this.convertionService.getUserConvertionsByMonthForCurrentUser(month);
         
+  //       if (!success) {
+  //         Swal.fire({
+  //           icon: 'error',
+  //           title: 'Error',
+  //           text: 'No conversions found for the selected month!',
+  //         });
+  //       }
+  //     } catch (error) {
+  //       Swal.fire({
+  //         icon: 'error',
+  //         title: 'Unexpected Error',
+  //         text: 'Something went wrong. Please try again!',
+  //       });
+  //       console.error(error);
+  //     } finally {
+  //       this.isLoading = false; // Finaliza el estado de carga
+  //     }
+  //   } else {
+  //     Swal.fire({
+  //       icon: 'warning',
+  //       title: 'Warning',
+  //       text: 'Please select a valid month!',
+  //     });
+  //   }
+  // }
+  async searchConvertionsForUser(month: number, year: number): Promise<void> {
+    if (month > 0 && month <= 12) {
+      this.isLoading = true;
+      try {
+        const success = await this.convertionService.getUserConvertionsByMonthForCurrentUser(month, year);
         if (!success) {
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'No conversions found for the selected month!',
+            text: 'No conversions found for the selected month and year!',
           });
         }
       } catch (error) {
@@ -98,7 +111,7 @@ formGetConvData: IGetConvertions = { username: "", month: 1 };
         });
         console.error(error);
       } finally {
-        this.isLoading = false; // Finaliza el estado de carga
+        this.isLoading = false;
       }
     } else {
       Swal.fire({

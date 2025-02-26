@@ -54,7 +54,7 @@ export class ConverterComponent {
         const user = await this.userService.getUserByUsername(username);
         if (user) {
           this.userData = user; 
-          console.log('Datos del usuario:', this.userData);
+          // console.log('Datos del usuario:', this.userData);
         }
       } catch (error) {
         console.error('Error al obtener los datos del usuario:', error);
@@ -112,7 +112,7 @@ export class ConverterComponent {
       icon: 'error',
       title: 'Uy',
       text: 'You’ve reached your conversion limit!',
-      showCancelButton: true, 
+      showCancelButton: true,     
       confirmButtonText: 'Upgrade Membership', 
       cancelButtonText: 'Stay with Current Plan', 
       reverseButtons: true, 

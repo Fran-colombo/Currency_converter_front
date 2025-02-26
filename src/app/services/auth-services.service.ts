@@ -47,9 +47,9 @@ export class AuthServicesService {
 
     if (token && username && role) {
       this.user = { username, role, token };
-      console.log('Usuario inicializado desde localStorage:', this.user);
+      
     } else {
-      console.log('No se encontró un usuario en el almacenamiento.');
+      // console.log('No se encontró un usuario en el almacenamiento.');
     }
   }
 
@@ -77,10 +77,10 @@ export class AuthServicesService {
       };
 
       this.saveToStorage(token, this.user.username, this.user.role);
-      console.log('Usuario logueado:', this.user);
+      // console.log('Usuario logueado:', this.user);
 
     } catch (error) {
-      console.error('Error en el login:', error);
+      // console.error('Error en el login:', error);
       throw error;
     }
   }
@@ -132,4 +132,6 @@ export class AuthServicesService {
       await this.fetchUserDetails();
     }
   }
+
+  
 }
